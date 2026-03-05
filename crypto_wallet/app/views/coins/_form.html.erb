@@ -1,32 +1,90 @@
-<%= form_with(model: coin) do |form| %>
-  <% if coin.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(coin.errors.count, "error") %> prohibited this coin from being saved:</h2>
+<style>
+  .coin-form{
+    display: flex;
+    flex-direction: column;
+  }
 
+  .field{
+    margin-bottom: 15px;
+  }
+
+  .field label{
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+  }
+
+  .input{
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    transition: 0.3s;
+  }
+
+  .input:focus{
+    border-color: #4f46e5;
+    outline: none;
+    box-shadow: 0 0 5px rgba(79,70,229,0.3);
+  }
+
+  .btn-primary{
+    width: 100%;
+    padding: 12px;
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .btn-primary:hover{
+    background-color: #3730a3;
+  }
+
+  .form-errors{
+    background: #ffe6e6;
+    color: #b91c1c;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+  }
+</style>
+
+<%=form_with(model: coin,class: "coin-form") do |form|%>
+  <%if coin.errors.any? %>
+    <div class="form-errors">
+      <h2>
+        <%=pluralize(coin.errors.count, "error")%> prohibited this coin from being saved:
+      </h2>
       <ul>
-        <% coin.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
+        <%coin.errors.each do |error|%>
+          <li><%=error.full_message%></li>
+        <%end%>
       </ul>
     </div>
-  <% end %>
+  <%end%>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_field :description %>
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description, class: "input" %>
   </div>
 
-  <div>
-    <%= form.label :acronym, style: "display: block" %>
-    <%= form.text_field :acronym %>
+  <div class="field">
+    <%= form.label :acronym %>
+    <%= form.text_field :acronym, class: "input" %>
   </div>
 
-  <div>
-    <%= form.label :url_image, style: "display: block" %>
-    <%= form.text_field :url_image %>
+  <div class="field">
+    <%= form.label :url_image %>
+    <%= form.text_field :url_image, class: "input" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="actions">
+    <%= form.submit "Save Coin", class: "btn-primary" %>
   </div>
-<% end %>
+
+
+<%end%>

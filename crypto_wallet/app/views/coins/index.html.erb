@@ -2,7 +2,9 @@
 
 <% content_for :title, "Coins" %>
 
-<h1>Coins</h1>
+<h1>moedas</h1>
+<h2><%=name_application%></h2>
+<%=data_br(Date.today)%>
 
 <div id="coins">
   <% @coins.each do |coin| %>

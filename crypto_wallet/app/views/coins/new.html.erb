@@ -1,11 +1,41 @@
-<% content_for :title, "New coin" %>
+<style>
+  .page-center{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f6f8;
+    
+  }
+  .card-form{
+    display:block;
+    text-align: center;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 400px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+    h1{
+    text-align: center;
+  }
 
-<h1>New coin</h1>
-
-<%= render "form", coin: @coin %>
-
-<br>
-
-<div>
-  <%= link_to "Back to coins", coins_path %>
+  .back-link{
+    margin-top: 25px;
+    text-align: center;
+  }
+  
+</style>
+<div class="page-center">
+  <div class="card-form">
+    <%content_for :title, "Nova Moeda"%>
+    
+    <h1>Nova Moeda</h1>
+    <div class="pricipal-form">
+      <%=render "form", coin: @coin %>
+    </div>
+    <div class="back-link">
+      <%=link_to "Voltar Para Moedas", coins_path %>
+    </div>
+  </div>
 </div>
